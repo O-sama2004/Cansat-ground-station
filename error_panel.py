@@ -96,12 +96,21 @@ class ErrorPanel:
             font=ctk.CTkFont(family="Courier New", size=12)
         )
         self.filter_entry.pack(side="left", padx=(8,3), pady=8)
+        
         self.apply_button = ctk.CTkButton(
-            filter_group, text="APPLY", width=62, height=28, fg_color="#00d4ff", hover_color="#0099cc",
+            filter_group, text="APPLY", width=62, height=28, fg_color="#00b7ff", hover_color="#0099cc",
             font=ctk.CTkFont(size=11, weight="bold"),
             command=(self.app.apply_filter if self.app else None)
         )
-        self.apply_button.pack(side="left", padx=(3,8), pady=8)
+        self.apply_button.pack(side="left", padx=(3,3), pady=8)  # slight pad change to make room
+
+        self.reset_button = ctk.CTkButton(
+            filter_group, text="RESET", width=62, height=28, fg_color="#ff9933", hover_color="#ffbb66",
+            font=ctk.CTkFont(size=11, weight="bold"),
+            command=lambda: self.filter_entry.delete(0, "end")
+        )
+        self.reset_button.pack(side="left", padx=(3,8), pady=8)
+
         presets_frame = ctk.CTkFrame(filter_group, fg_color="transparent")
         presets = ['1A1A', '2B2B', '3C3C', '4D4D', '5E5E', '6F6F']
         for preset in presets:
